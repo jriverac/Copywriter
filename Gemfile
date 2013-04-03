@@ -34,5 +34,8 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+#Enable TEXTILE support
+gem 'RedCloth', :require => 'redcloth'
+
 # To use debugger
 # gem 'debugger'

@@ -12,7 +12,14 @@
 
 <p>
   <b>Body:</b>
+  <div style="width: 960px;">
+    
   <%= @page.body %>
+  <h3>HTML Preview</h3>
+  <%= raw(RedCloth.new(@page.body).to_html) %>
+  </div>
+  <h3>HTML Source</h3>
+  <textarea style="width: 960px;" cols="50" rows="5"><%= raw(RedCloth.new(@page.body).to_html) %></textarea>
 </p>
 
 <p>
