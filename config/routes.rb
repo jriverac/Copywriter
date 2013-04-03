@@ -1,8 +1,13 @@
 Copywriter::Application.routes.draw do
-  resources :pages
 
+    resources :pages
 
-  resources :projects
+    resources :projects do 
+        resources :pages
+    end
+    
+
+    
 
 
   # The priority is based upon order of creation:

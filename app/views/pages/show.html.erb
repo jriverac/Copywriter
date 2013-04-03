@@ -1,37 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Project:</b>
-  <%= @page.project_id %>
+    <b>Project:</b>
+    <%= @project.name%> (<%= @page.project_id %>)
 </p>
 
 <p>
-  <b>Title:</b>
-  <%= @page.title %>
+    <b>Title:</b>
+    <%= @page.title %>
 </p>
 
 <p>
-  <b>Body:</b>
-  <div style="width: 960px;">
-    
-  <%= @page.body %>
-  <h3>HTML Preview</h3>
-  <%= raw(RedCloth.new(@page.body).to_html) %>
-  </div>
-  <h3>HTML Source</h3>
-  <textarea style="width: 960px;" cols="50" rows="5"><%= raw(RedCloth.new(@page.body).to_html) %></textarea>
+    <h1>Body:</h1>
+    <div style="width: 960px;">
+        <pre><%= @page.body %></pre>
+    <div>
+</p>
+<p>
+    <div style="width: 960px;">
+    <h1>HTML Preview</h1>
+    <%= raw(RedCloth.new(@page.body).to_html) %>
+    </div>
+</p>
+<p>
+    <h1>HTML Source</h1>
+    <textarea style="width: 960px;" cols="50" rows="5"><%= raw(RedCloth.new(@page.body).to_html) %></textarea>
+</p>
+<p>
+<b>Parent:</b>
+<%= @page.parent %>
 </p>
 
 <p>
-  <b>Parent:</b>
-  <%= @page.parent %>
-</p>
-
-<p>
-  <b>Order:</b>
-  <%= @page.order %>
+<b>Order:</b>
+<%= @page.order %>
 </p>
 
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Edit', edit_project_page_path(@project, @page) %> |
+<%= link_to 'Back', project_pages_path(@project) %>
