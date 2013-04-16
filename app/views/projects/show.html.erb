@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+<h1>
   <%= @project.name %>
-</p>
+</h1><hr/>
 
 <p>
   <b>Description:</b>
@@ -12,9 +11,35 @@
 
 <p>
   <b>Client:</b>
-  <%= @project.client_id %>
+  <%= @client.name %>
 </p>
 
+<table>
+  <tr>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <th>Title</th>
+
+    <th>Parent</th>
+    <th>Order</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pages.each do |page| %>
+  <tr>
+
+    <td><%= page.title %></td>
+
+    <td><%= page.parent %></td>
+    <td><%= page.order %></td>
+    <td><%= link_to 'Show', client_project_page_path(@client, @project, page) %></td>
+    <td><%= link_to 'Edit', edit_client_project_page_path(@client, @project, page) %></td>
+    <td><%= link_to 'Destroy', client_project_page_path(@client, @project, page), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_client_project_path(@client, @project) %> |
+<%= link_to 'Back', client_projects_path(@client) %>

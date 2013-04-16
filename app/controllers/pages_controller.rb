@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+      @client = Client.find(params[:client_id])
       @project = Project.find(params[:project_id])
       @page = Page.find(params[:id])
 
@@ -65,10 +66,11 @@ class PagesController < ApplicationController
 
       @page = Page.find(params[:id])
       @project = Project.find(@page.project_id)
+      @client = Page.find(@project.client_id)
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to project_page_path(@project, @page), notice: 'Page was successfully updated.' }
+        format.html { redirect_to client_project_page_path(@client, @project, @page), notice: 'Page was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

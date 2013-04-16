@@ -1,3 +1,5 @@
+/* @group General Styles */
+
 body {
   background-color: #fff;
   color: #333;
@@ -6,6 +8,12 @@ body {
   line-height: 18px;
 }
 
+#content_wrapper {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* @end */
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;

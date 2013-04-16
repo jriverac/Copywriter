@@ -1,31 +1,32 @@
+<script>
+// Load this script when page loads
+$(document).ready(function(){
+
+ // Set up a listener so that when anything with a class of 'tab' 
+ // is clicked, this function is run.
+ $('.tab').click(function () {
+
+  // Remove the 'active' class from the active tab.
+  $('#tabs_container > .tabs > li.active')
+	  .removeClass('active');
+	  
+  // Add the 'active' class to the clicked tab.
+  $(this).parent().addClass('active');
+
+  // Remove the 'tab_contents_active' class from the visible tab contents.
+  $('#tabs_container > .tab_contents_container > div.tab_contents_active')
+	  .removeClass('tab_contents_active');
+
+  // Add the 'tab_contents_active' class to the associated tab contents.
+  $(this.rel).addClass('tab_contents_active');
+
+ });
+});
+</script>
 <p id="notice"><%= notice %></p>
+<h1><%= @project.name%></h1>
 
-<p>
-    <b>Project:</b>
-    <%= @project.name%> (<%= @page.project_id %>)
-</p>
-
-<p>
-    <b>Title:</b>
-    <%= @page.title %>
-</p>
-
-<p>
-    <h1>Body:</h1>
-    <div style="width: 960px;">
-        <pre><%= @page.body %></pre>
-    <div>
-</p>
-<p>
-    <div style="width: 960px;">
-    <h1>HTML Preview</h1>
-    <%= raw(RedCloth.new(@page.body).to_html) %>
-    </div>
-</p>
-<p>
-    <h1>HTML Source</h1>
-    <textarea style="width: 960px;" cols="50" rows="5"><%= raw(RedCloth.new(@page.body).to_html) %></textarea>
-</p>
+<h2><%= @page.title %></h2>
 <p>
 <b>Parent:</b>
 <%= @page.parent %>
@@ -36,6 +37,45 @@
 <%= @page.order %>
 </p>
 
+<div id="tabs_container">
 
-<%= link_to 'Edit', edit_project_page_path(@project, @page) %> |
-<%= link_to 'Back', project_pages_path(@project) %>
+    <!-- These are the tabs -->
+    <ul class="tabs">
+      <li class="active">
+        <a href="#" rel="#tab_1_contents" class="tab">Body</a>
+      </li>
+      <li><a href="#" rel="#tab_2_contents" class="tab">Preview</a></li>
+      <li><a href="#" rel="#tab_3_contents" class="tab">Source</a></li>
+    </ul>
+
+    <!-- This is used so the contents don't appear to the 
+         right of the tabs -->
+    <div class="clear"></div>
+
+    <!-- This is a div that hold all the tabbed contents -->
+    <div class="tab_contents_container">
+
+      <!-- Tab 1 Contents -->
+      <div id="tab_1_contents" class="tab_contents tab_contents_active">
+    <textarea style="width: 960px; height: 300px" cols="50" rows="5"><%= @page.body %></textarea>
+      </div>
+
+      <!-- Tab 2 Contents -->
+      <div id="tab_2_contents" class="tab_contents">
+          <div style="width: 960px; border: 1px solid #000000">
+
+          <%= raw(RedCloth.new(@page.body).to_html) %>
+          </div>
+      </div>
+
+      <!-- Tab 3 Contents -->
+      <div id="tab_3_contents" class="tab_contents">
+    <textarea style="width: 960px; height: 300px"  cols="50" rows="5"><%= raw(RedCloth.new(@page.body).to_html) %></textarea>
+      </div>
+
+    </div>
+  </div>
+
+
+<%= link_to 'Edit', edit_client_project_page_path(@client, @project, @page) %> |
+<%= link_to 'Back', client_project_path(@client, @project) %>
