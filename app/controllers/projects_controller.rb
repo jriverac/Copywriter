@@ -2,7 +2,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @client = Client.find(params[:client_id])
+    @projects = @client.projects.all
 
     respond_to do |format|
       format.html # index.html.erb

@@ -48,10 +48,11 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(params[:page])
     @project = Project.find(@page.project_id)
+    @client = Client.find(@project.client_id)
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to project_page_path(@project, @page), notice: 'Page was successfully created.' }
+        format.html { redirect_to client_project_page_path(@client, @project, @page), notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
         format.html { render action: "new" }
