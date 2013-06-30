@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.json
   def new
     @project = Project.new
+    @client = Client.find(params[:client_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,16 +38,18 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @client = Client.find(params[:client_id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @client = Client.find()
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to client_project_path(@client, @project), notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
@@ -59,10 +62,11 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
+    @client = Client.find(@project.client_id)
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to client_project_path(@client, @project), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

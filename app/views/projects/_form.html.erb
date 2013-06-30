@@ -20,8 +20,7 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :client_id %><br />
-    <%= f.number_field :client_id %>
+    <%= f.hidden_field :client_id, :value => @client.id %>
   </div>
   <div class="actions">
     <%= f.submit %>

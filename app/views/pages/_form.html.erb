@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :project_id %><br />
-    <%= f.number_field :project_id %>
+    <%= f.hidden_field :project_id, :value => params[:client_id] %>
   </div>
   <div class="field">
     <%= f.label :title %><br />
